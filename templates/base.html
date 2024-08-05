@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rust Web</title>
+    <script src="/htmx.min.js"></script>
+    <script src="/tailwindcss.js"></script>
+    <style type="text/tailwindcss">
+      @layer utilities {
+        body {
+          @apply bg-[#313338] text-white;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main id="main">{{ message_from_rust }}</main>
+  </body>
+</html>
