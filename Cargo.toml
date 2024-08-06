@@ -1,9 +1,11 @@
 [package]
-name = "web"
+name = "Terminal"
 version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+serde = { version = "1.0.205", features = ["derive"] }
+
 actix-files = "0.6.6"
 actix-web = "4.8.0"
 lazy_static = "1.5.0"

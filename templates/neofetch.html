@@ -1,0 +1,32 @@
+<p>{{ shell }}</p>
+<pre class="flex gap-[4ch]">
+  <div class="text-primary">{{ res | linebreaksbr | safe }}</div>
+  <div>
+<span class="text-primary">guest</span>@<span class="text-primary">localhost </span>
+---------------
+<span class="text-primary">OS</span>: <span id="os">Arch Linux x86_64</span>
+<span class="text-primary">Host</span>: <span id="host">Firefox</span>
+<span class="text-primary">Kernel</span>: <span id="kernel">Linux</span>
+<span class="text-primary">Packages</span>: 727 (pacman)
+<span class="text-primary">Display: </span>: <span id="Display">1920x1080</span>
+<span class="text-primary">CPU</span>: <span id="cpu">1 core</span>
+<span class="text-primary">Theme</span>: <span id="theme">Dark</span>
+<span class="text-primary">Font</span>: Fira Code, monospace
+<span class="text-primary">Locale</span>: <span id="locale">Locale: en_US.UTF-8</span>
+
+<span>   </span><span class="bg-[#a80000]">   </span><span class="bg-[#00a800]">   </span><span class="bg-[#a85400]">   </span><span class="bg-[#0000a8]">   </span><span class="bg-[#a800a8]">   </span><span class="bg-[#00a8a8]">   </span><span class="bg-[#a8a8a8]">   </span>
+<span class="bg-[#545454]">   </span><span class="bg-[#fc5454]">   </span><span class="bg-[#54fc54]">   </span><span class="bg-[#fcfc54]">   </span><span class="bg-[#5454fc]">   </span><span class="bg-[#f953f9]">   </span><span class="bg-[#54fcfc]">   </span><span class="bg-[#fcfcfc]">   </span>
+
+  </div>
+  <script>
+    const {parsedResult} = bowser.getParser(window.navigator.userAgent);
+    console.log(parsedResult)
+    document.getElementById('os').innerHTML = `${parsedResult.os.name} ${parsedResult.os.version}`
+    document.getElementById('host').innerHTML = `${parsedResult.browser.name} ${parsedResult.browser.version}`
+    document.getElementById('kernel').innerHTML = `${parsedResult.engine.name} ${parsedResult.engine.version}`
+    document.getElementById('Display').innerHTML = `${window.screen.width * window.devicePixelRatio}x${window.screen.height * window.devicePixelRatio}`
+    document.getElementById('cpu').innerHTML = `${navigator.hardwareConcurrency} cores`
+    document.getElementById('theme').innerHTML = `${window?.matchMedia?.('(prefers-color-scheme:dark)')?.matches ? 'Dark' : 'Light'}`
+    document.getElementById('locale').innerHTML = `${(new Intl.NumberFormat()).resolvedOptions().locale.replace('-', '_')}.UTF-8`
+  </script>
+</div>

@@ -1,0 +1,41 @@
+{% extends "base.html" %} {% block main %}
+<div id="res"></div>
+<form
+  class="flex w-full"
+  hx-post="/command"
+  hx-swap="beforeend"
+  hx-target="#res"
+  hx-on::after-request="this.reset()"
+>
+  <div class="flex-grow flex-shrink-0">{{ shell }}</div>
+  <input
+    type="text"
+    id="prompt"
+    class="bg-transparent outline-none w-full"
+    name="command"
+    autocomplete="off"
+    aria-autocomplete="none"
+  />
+</form>
+<script>
+  document.addEventListener('htmx:afterOnLoad', (e) => {
+    if (e.detail.xhr.status === 204) {
+      document.getElementById('res').innerHTML = ''
+    }
+  })
+  const prompt = document.getElementById('prompt')
+
+  const focusPrompt = () => {
+    setTimeout(() => {
+      prompt.focus()
+    }, 10)
+  }
+
+  const val = prompt.value
+  prompt.value = ''
+  prompt.value = val
+
+  window.addEventListener('focus', () => focusPrompt())
+  prompt.onblur = () => focusPrompt()
+</script>
+{% endblock %}

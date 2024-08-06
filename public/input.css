@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+
+@layer utilities {
+  body {
+    @apply bg-black text-white leading-tight;
+    font-family: 'Fira Code Nerd Font', monospace;
+  }
+}
+
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Fira Code Nerd Font';
+  font-style: normal;
+  font-weight: 400;
+  src: url('assets/FiraCodeNerdFont-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Fira Code Nerd Font';
+  font-weight: 800;
+  src: url('assets/FiraCodeNerdFont-Bold.ttf') format('truetype');
+}

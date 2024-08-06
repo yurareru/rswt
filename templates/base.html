@@ -5,16 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rust Web</title>
     <script src="/htmx.min.js"></script>
-    <script src="/tailwindcss.js"></script>
-    <style type="text/tailwindcss">
-      @layer utilities {
-        body {
-          @apply bg-[#313338] text-white;
-        }
-      }
-    </style>
+    <script src="https://unpkg.com/bowser@2.4.0/es5.js"></script>
+    <link href="/output.css" rel="stylesheet" />
   </head>
   <body>
-    <main id="main">{{ message_from_rust }}</main>
+    <main id="main">{% block main %}{% endblock %}</main>
   </body>
 </html>
