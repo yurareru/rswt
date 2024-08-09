@@ -3,8 +3,10 @@
 
 @layer utilities {
   body {
-    @apply bg-black text-white leading-tight;
-    font-family: 'Fira Code Nerd Font', monospace;
+    @apply bg-black text-white leading-tight font-fira-code;
+  }
+  pre {
+    @apply font-fira-code;
   }
 }
 
@@ -15,10 +17,14 @@
   font-style: normal;
   font-weight: 400;
   src: url('assets/FiraCodeNerdFont-Regular.ttf') format('truetype');
+  font-feature-settings: 'calt', 'zero', 'cv14', 'onum', 'ss04', 'cv31', 'cv30',
+    'cv29', 'ss02', 'ss06';
 }
 
 @font-face {
   font-family: 'Fira Code Nerd Font';
   font-weight: 800;
   src: url('assets/FiraCodeNerdFont-Bold.ttf') format('truetype');
+  font-feature-settings: 'calt', 'zero', 'cv14', 'onum', 'ss04', 'cv31', 'cv30',
+    'cv29', 'ss02', 'ss06';
 }

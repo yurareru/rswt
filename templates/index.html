@@ -5,9 +5,9 @@
   hx-post="/command"
   hx-swap="beforeend"
   hx-target="#res"
-  hx-on::after-request="this.reset()"
+  hx-on::after-request="this.reset(); window.scrollTo(0, document.body.scrollHeight)"
 >
-  <div class="flex-grow flex-shrink-0">{{ shell }}</div>
+  <pre class="flex-grow flex-shrink-0">{{ shell }}</pre>
   <input
     type="text"
     id="prompt"
@@ -17,6 +17,7 @@
     aria-autocomplete="none"
   />
 </form>
+
 <script>
   document.addEventListener('htmx:afterOnLoad', (e) => {
     if (e.detail.xhr.status === 204) {
