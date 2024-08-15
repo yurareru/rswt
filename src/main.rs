@@ -72,16 +72,6 @@ async fn command(form: web::Form<Command>) -> impl Responder {
  @H@*`                    `*%#@ 
 *`                            `*
             "#;
-            let info = vec![
-                ("OS", "Arch Linux x86_64"),
-                ("Kernel", "Linux 7.2.70-arch1-1"),
-                ("Uptime", "7 hours, 27 minutes"),
-                ("Packages", "727 (pacman)"),
-                ("Terminal", "Rust Web Terminal"),
-                ("Terminal Font", "FiraCodeNF-Reg"),
-                ("Theme", "Dark"),
-                ("Locale", "en_US.UTF-8"),
-            ];
 
             let colors_row1 = [
                 "bg-[#000000]",
@@ -105,13 +95,6 @@ async fn command(form: web::Form<Command>) -> impl Responder {
                 "bg-[#fcfcfc]",
             ];
 
-            let mut formatted_info = String::new();
-            for (key, value) in info {
-                formatted_info.push_str(&format!(
-                    "<span class=\"text-primary\">{}</span>: {}</br>",
-                    key, value
-                ));
-            }
             let mut formatted_color_rows = String::new();
             for color in colors_row1.iter() {
                 formatted_color_rows.push_str(&format!("<span class=\"{}\">   </span>", color));
@@ -121,20 +104,10 @@ async fn command(form: web::Form<Command>) -> impl Responder {
                 formatted_color_rows.push_str(&format!("<span class=\"{}\">   </span>", color));
             }
 
-            context.insert(
-                "res",
-                &format!(
-                    "<div class=\"flex gap-[4ch]\">
-<div class=\"text-primary\">{arch_linux_logo}</div>
-<div><span class=\"text-primary\">guest</span>@<span class=\"text-primary\">localhost</span>
----------------
-{formatted_info}
-
-{formatted_color_rows}</div></div>",
-                ),
-            );
+            context.insert("arch_linux_logo", &arch_linux_logo);
+            context.insert("color_rows", &formatted_color_rows);
+            return HttpResponse::Ok().body(TEMPLATES.render("neofetch.html", &context).unwrap());
         }
-
         "ls" => context.insert("res", "orang.txt secret.txt"),
         cmd if cmd.starts_with("cat") => {
             let filename = cmd.trim_start_matches("cat").trim();

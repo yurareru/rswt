@@ -1,0 +1,35 @@
+<p>{{ shell }}</p>
+<pre class="flex gap-[4ch]">
+  <div class="text-primary">{{ arch_linux_logo | linebreaksbr | safe }}</div>
+  <div>
+<span class="text-primary">guest</span>@<span class="text-primary">localhost </span>
+---------------
+<span class="text-primary">OS</span>: <span>Arch Linux x86_64<script>
+  const {parsedResult } = bowser.getParser(window.navigator.userAgent)
+  console.log(parsedResult, me().innerText)
+  me().innerText = `${parsedResult.os.name} ${parsedResult.os.version}`
+</script></span>
+<span class="text-primary">Host</span>: <span>Firefox<script>
+    me().innerText = `${parsedResult.browser.name} ${parsedResult.browser.version}`
+</script></span>
+<span class="text-primary">Kernel</span>: <span>Linux<script>
+    me().innerText = `${parsedResult.engine.name} ${parsedResult.engine.version}`
+</script></span>
+<span class="text-primary">Packages</span>: 727 (pacman)
+<span class="text-primary">Display: </span>: <span>1920x1080<script>
+    me().innerText = `${window.screen.width * window.devicePixelRatio}x${window.screen.height * window.devicePixelRatio}`
+</script></span>
+<span class="text-primary">CPU</span>: <span>1 core<script>
+    me().innerText = `${navigator.hardwareConcurrency} cores`
+</script></span>
+<span class="text-primary">Theme</span>: <span>Dark<script>
+    me().innerText = `${window?.matchMedia?.('(prefers-color-scheme:dark)')?.matches ? 'Dark' : 'Light'}`
+</script></span>
+<span class="text-primary">Font</span>: Fira Code, monospace
+<span class="text-primary">Locale</span>: <span>en_US.UTF-8<script>
+    me().innerText = `${(new Intl.NumberFormat()).resolvedOptions().locale.replace('-', '_')}.UTF-8`
+</script></span>
+
+{{ color_rows | linebreaksbr | safe }}
+  </div>
+</div>
